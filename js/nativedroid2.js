@@ -13,18 +13,16 @@
   var root = (typeof self === 'object' && self.self === self && self) ||
             (typeof global === 'object' && global.global === global && global);
 
-  // Set up Backbone appropriately for the environment. Start with AMD.
+  // Set up ND2 appropriately for the environment. Start with AMD.
   if (typeof define === 'function' && define.amd) {
-    define(['jquery', 'Waves', 'exports' ], function($, Waves, exports) {
-      // Export global even in AMD case in case this script is loaded with
-      // others that may still expect a global Backbone.
+    define(['jquery', 'Waves', 'exports', 'jquerymobile'], function($, Waves, exports) {
       factory($, Waves, exports);
       return $;
     });
 
   // Next for Node.js or CommonJS. jQuery may not be needed as a module.
   } else if (typeof exports !== 'undefined') {
-    var $ = require('jquery');
+    var $ = require('jquery'); requre('jquerymobile');
     var Waves = require('Waves');
     factory(root, Waves, root);
   // Finally, as a browser global.
